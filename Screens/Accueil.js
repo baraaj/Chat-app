@@ -10,8 +10,8 @@ export default function Accueil() {
   return (
     <View style={styles.container}>
       <StatusBar style="light" />
-      <View style={styles.view2style}>
-      <Text style={{color:"white",textAlign:"center",fontSize:32,fontWeight:"bold",marginBottom:10}}>Accueil</Text>
+      <View>
+      <Text style={{color:"white",textAlign:"center",fontSize:38,fontWeight:"bold",marginBottom:10}}>Accueil</Text>
       </View>
     </View>
   );
@@ -20,7 +20,7 @@ export default function Accueil() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#a0b',
+    backgroundColor: '#204969',
     alignItems: 'center',
     justifyContent: 'center',
   },

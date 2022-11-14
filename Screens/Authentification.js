@@ -20,7 +20,7 @@ export default function Authentification() {
       <TouchableOpacity style={{
          width:"50%",
          borderRadius:5,
-         backgroundColor:"#35b",
+         backgroundColor:"#8ac6d1",
          height:40,
          width:100,
          justifyContent:"center",
@@ -49,7 +49,7 @@ export default function Authentification() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#a0b',
+    backgroundColor: '#204969',
     alignItems: 'center',
     justifyContent: 'center',
   },
