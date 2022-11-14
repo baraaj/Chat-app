@@ -9,5 +9,5 @@ import Accueil from './Screens/Accueil';
 export default function App() {
 
   return (
-    <Accueil/>
+    <Authentification/>
 )};

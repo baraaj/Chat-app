@@ -12,9 +12,10 @@
     "@react-navigation/material-bottom-tabs": "^6.2.4",
     "@react-navigation/native": "^6.0.13",
     "@react-navigation/native-stack": "^6.9.1",
+    "core-js": "^3.26.1",
     "expo": "~46.0.16",
     "expo-status-bar": "~1.4.0",
-    "firebase": "^9.13.0",
+    "firebase": "^9.6.11",
     "react": "18.0.0",
     "react-dom": "^18.2.0",
     "react-native": "0.69.6",
@@ -27,5 +28,16 @@
   "devDependencies": {
     "@babel/core": "^7.12.9"
   },
-  "private": true
+  "private": true,
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/baraaj/Chat-app.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/baraaj/Chat-app/issues"
+  },
+  "homepage": "https://github.com/baraaj/Chat-app#readme",
+  "description": ""
 }
