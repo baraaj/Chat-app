@@ -3,11 +3,15 @@ import { useState } from 'react';
 import { StyleSheet, Text, View,TextInput } from 'react-native';
 import { Button } from 'react-native';
 import { TouchableOpacity } from 'react-native';
+import initfirebase from './../config/index';
+import SignUp from './SignUp';
+import Accueil from './Accueil';
+
 
 export default function Authentification() {
     const[email,setEmail]=useState("");
     const[password,setPassword]=useState("");
-
+    const auth = initfirebase.auth();
   return (
     <View style={styles.container}>
       <StatusBar style="light" />
