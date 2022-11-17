@@ -58,7 +58,7 @@ export default function Authentification() {
         marginBottom:10,
         alignItems:"flex-end",
          
-      }}>
+      }} onPress={()=>{props.navigation.replace("signup")}}>
         <Text style={{color:"white"}}>Create new User</Text>
 
       </TouchableOpacity>
