@@ -59,7 +59,7 @@ export default function SignUp(props) {
       style={{
          width:"50%",
          borderRadius:5,
-         backgroundColor:"#e38b73",
+         backgroundColor:"#8ac6d1",
          height:40,
          width:100,
          justifyContent:"center",
@@ -83,7 +83,7 @@ export default function SignUp(props) {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#e4ccb3',
+    backgroundColor: '#204969',
     alignItems: 'center',
     justifyContent: 'center',
   },
