@@ -3,10 +3,10 @@
 //import { getAnalytics } from "firebase/analytics";
 import app from "firebase/compat/app";
 import  "firebase/compat/auth";
-import Authentification from './../Screen/Authentification';
 //import initfirebase from './index';
 import "firebase/compat/database";
 import "firebase/compat/storage";
+import Authentification from './../Screens/Authentification';
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
 
@@ -23,5 +23,7 @@ const firebaseConfig = {
 };
 
 // Initialize Firebase
-const app = initializeApp(firebaseConfig);
-const analytics = getAnalytics(app);
+//const app = initializeApp(firebaseConfig);
+//const analytics = getAnalytics(app);
+const initfirebase = app.initializeApp(firebaseConfig);
+export default initfirebase;

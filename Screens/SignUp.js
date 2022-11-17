@@ -1,27 +1,3 @@
-Skip to content
-Search or jump to…
-Pull requests
-Issues
-Codespaces
-Marketplace
-Explore
- 
-@baraaj 
-SoumayaOu
-/
-ChatApp
-Public
-Code
-Issues
-Pull requests
-Actions
-Projects
-Security
-Insights
-ChatApp/Screen/SignUp.js /
-Cannot retrieve contributors at this time
-108 lines (94 sloc)  2.99 KB
-
 import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, View,TextInput } from 'react-native';
 import { Button } from 'react-native';

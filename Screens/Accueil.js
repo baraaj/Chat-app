@@ -14,23 +14,17 @@ export default function Accueil() {
      
   const Tab = createMaterialBottomTabNavigator();
   return (
-  {/*  <View style={styles.container}>
+      /*  <View style={styles.container}>
       <StatusBar style="light" />
       <View>
       <Text style={{color:"white",textAlign:"center",fontSize:38,fontWeight:"bold",marginBottom:10}}>Accueil</Text>
       </View>
-  </View>*/}
-  <Tab.Navigator  >
+  </View>*/
+  <Tab.Navigator>
   <Tab.Screen  name="list" component={List} ></Tab.Screen>
-  <Tab.Screen name="group" component={Group} ></Tab.Screen>
+  <Tab.Screen name="group" component={Group}></Tab.Screen>
   <Tab.Screen name="profil" component={Profil}></Tab.Screen>
-</Tab.Navigator>
-  
-      
-    
-
-  
-
+  </Tab.Navigator>
 )
 }
 
