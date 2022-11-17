@@ -41,7 +41,7 @@ export default function SignUp(props) {
       <TouchableOpacity 
       onPress={() => {
         if((email.length>0 && email.includes("@")))
-             if(password.length>5&& (password===password2)&&(password.length>5))
+             if(password.length>0&& (password===password2)&&(password.length>5))
              {
                 auth.createUserWithEmailAndPassword(email,password)
                 .then(()=>{
