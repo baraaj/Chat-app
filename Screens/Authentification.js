@@ -8,7 +8,7 @@ import SignUp from './SignUp';
 import Accueil from './Accueil';
 
 
-export default function Authentification() {
+export default function Authentification(props) {
     const[email,setEmail]=useState("");
     const[password,setPassword]=useState("");
     const auth = initfirebase.auth();
