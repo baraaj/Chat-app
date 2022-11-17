@@ -1,13 +1,17 @@
-import { StatusBar } from 'expo-status-bar';
-import { useState } from 'react';
-import { StyleSheet, Text, View,TextInput } from 'react-native';
-import { Button } from 'react-native';
-import { TouchableOpacity } from 'react-native';
+import { NavigationContainer } from '@react-navigation/native';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import Authentification from './Screens/Authentification';
 import Accueil from './Screens/Accueil';
-
+import SignUp from './Screen/SignUp';
+const Stack = createNativeStackNavigator();
 export default function App() {
 
   return (
-    <Authentification/>
+    <NavigationContainer>
+    <Stack.Navigator>
+      <Stack.Screen name="auth" component={Authentification}></Stack.Screen>
+      <Stack.Screen name="signup" component={SignUp}></Stack.Screen>
+      <Stack.Screen name="Accueil" component={Accueil}></Stack.Screen>
+    </Stack.Navigator>
+  </NavigationContainer>
 )};
