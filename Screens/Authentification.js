@@ -30,8 +30,25 @@ export default function Authentification() {
          justifyContent:"center",
          marginTop:10,
         
+      }}onPress={()=>{
+        if((email.length>0 && email.includes("@")))
+        {if(password.length>5)
+        {
+           auth.signInWithEmailAndPassword(email,password)
+           .then(()=>{
+               props.navigation.replace("Accueil");
+           }).catch((erreur)=>{
+               alert(erreur)
+           });
+
+
+        }}else{
+           alert("verifiez vos donnée")
+        }
+  
+  
       }}>
-      <Text onPress={()=>alert(email)} style={{textAlign:"center",fontWeight:"bold",fontSize:18,color:'white'}}>Validate</Text>
+      <Text style={{textAlign:"center",fontWeight:"bold",fontSize:18,color:'white'}}>Validate</Text>
  
       </TouchableOpacity>
       <TouchableOpacity style={{
