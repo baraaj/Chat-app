@@ -1,7 +1,7 @@
 import { View, Text,StyleSheet ,FlatList,Image} from 'react-native'
 import React from 'react'
 
-export default function List() {
+export default function List(props) {
   const data=[
     {nom:"Baraa",
   prenom:"Jridi",
@@ -18,12 +18,12 @@ pseudo:"bj"}
         <FlatList data={data}
                   renderItem={(item)=>{
                       return <View style={styles.ViewItem}>
+                       
                         <Image style={{height:60,width:60,resizeMode:"contain"}}source={require("../assets/profil.png")}></Image>
-                          <Text style={{fontSize:22,fontWeight:"bold"}}>{item.pseudo}</Text>;
+                          <Text onPress={()=>{props.navigation.navigate("chat")}} style={{fontSize:22,fontWeight:"bold"}}>{item.pseudo}</Text>;
                           <Text>{item.nom}</Text>;
                           <Text>{item.prenom}</Text>;
-                          
-
+                           
                             </View> 
                       
                       
