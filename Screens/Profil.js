@@ -77,16 +77,31 @@ export default function Profil() {
       <TextInput placeholder="prenom" style={styles.TextInput}></TextInput>
       <TextInput placeholder="pseudo" style={styles.TextInput}></TextInput>
       <TouchableOpacity style={styles.button}
-       onPress={() => {
-        if(image!=null){
-        const ref_profils = database.ref('profils');
-        const key = ref_profils.push().key;
-        ref_profils.child('profil' + key).set({
-          nom: nom,
-          prenom: prenom,
-          pseudo: pseudo,
-      }); 
+       onPress={async() => {
+        if (image != null) {
+          const url = await uploadImage(image)
+
+          const ref_profils = database.ref('profils');
+          const key = ref_profils.push().key;
+          ref_profils.child("profil"+key).set({
+              nom: nom,
+              prenom: prenom,
+              pseudo: pseudo,
+              url:url,
+
+          }); 
       }
+   
+     
+   
+     
+      
+       
+    }}>
+        
+        <Text style={{textAlign:"center",fontWeight:"bold",fontSize:18,color:'white'}}>Save</Text>
+
+      </TouchableOpacity>
       useEffect(() => {
         ref_profils.on("value",(dataSnapshot)=>{
           let d = [];
@@ -100,16 +115,6 @@ export default function Profil() {
           ref_profils.off();
         };
       }, []); 
-     
-   
-     
-      
-       
-    }}>
-        
-        <Text style={{textAlign:"center",fontWeight:"bold",fontSize:18,color:'white'}}>Save</Text>
-
-      </TouchableOpacity>
       {/* <Button style={styles.button}
       onPress={()=>{
           database.ref("profils").child("profil").set({
