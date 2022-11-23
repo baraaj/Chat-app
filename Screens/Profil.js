@@ -54,20 +54,8 @@ export default function Profil() {
           setImage(result.assets[0].uri);
         }
       };
-      useEffect(() => {
-        ref_profils.on("value",(dataSnapshot)=>{
-          let d = [];
-          dataSnapshot.forEach((profile)=>{
-              d.push(profile.val());
-          });
-          setdata(d);
-      })
-        
-        return () => {
-          ref_profils.off();
-        };
-      }, []);
 
+      
   return (
     <View style={styles.container}>
       <Text style={styles.titre}>Profil</Text>
@@ -99,9 +87,23 @@ export default function Profil() {
           pseudo: pseudo,
       }); 
       }
+      useEffect(() => {
+        ref_profils.on("value",(dataSnapshot)=>{
+          let d = [];
+          dataSnapshot.forEach((profile)=>{
+              d.push(profile.val());
+          });
+          setdata(d);
+      })
         
-       
+        return () => {
+          ref_profils.off();
+        };
+      }, []); 
      
+   
+     
+      
        
     }}>
         
@@ -118,8 +120,11 @@ export default function Profil() {
       }}
       title="Save"></Button> */}
     </View>
+    
   )
+
 }
+
 
 const styles = StyleSheet.create({
     TextInput:{
@@ -155,4 +160,6 @@ const styles = StyleSheet.create({
          marginTop:80,
          alignSelf:"center"
       },
-})
+}
+
+)
