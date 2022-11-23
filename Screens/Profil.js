@@ -1,5 +1,6 @@
 import { View, Text,Image } from 'react-native'
 import React from 'react'
+import {useState,useEffect} from 'react'
 import { StyleSheet } from 'react-native'
 import { Button, TextInput } from 'react-native-paper'
 import initfirebase from './../config/index';
@@ -9,6 +10,7 @@ import * as ImagePicker from 'expo-image-picker';
 
 export default function Profil() {
     const database = initfirebase.database();
+    const [data,setdata]= useState([]);
     const storage = initfirebase.storage();
     const [nom, setNom] = useState("");
     const [prenom, setPrenom] = useState("");
@@ -16,7 +18,7 @@ export default function Profil() {
     const [pseudo, setPseudo] = useState("");
     const imageToBlob = async (uri) => {
       const blob=await new Promise((resolve,reject)=>{
-        const xhr = await new XMLHttpRequest();
+        const xhr = new XMLHttpRequest();
         xhr.onload = function () {
           resolve(xhr.response);
         };
@@ -52,6 +54,20 @@ export default function Profil() {
           setImage(result.assets[0].uri);
         }
       };
+      useEffect(() => {
+        ref_profils.on("value",(dataSnapshot)=>{
+          let d = [];
+          dataSnapshot.forEach((profile)=>{
+              d.push(profile.val());
+          });
+          setdata(d);
+      })
+        
+        return () => {
+          ref_profils.off();
+        };
+      }, []);
+
   return (
     <View style={styles.container}>
       <Text style={styles.titre}>Profil</Text>
@@ -84,21 +100,8 @@ export default function Profil() {
       }); 
       }
         
-        const [data,setdata]= useState([]);
-        useEffect(() => {
-          ref_profils.on("value",(dataSnapshot)=>{
-            let d = [];
-            dataSnapshot.forEach((profile)=>{
-                d.push(profile.val());
-            });
-            setdata(d);
-        })
-          
-          return () => {
-            ref_profils.off();
-          };
-        }, []);
-
+       
+     
        
     }}>
         
