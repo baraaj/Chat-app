@@ -1,10 +1,8 @@
-import { View, Text,Image } from 'react-native'
+import {View, Text, Button, TouchableOpacity, StyleSheet, Image} from "react-native";
 import React from 'react'
 import {useState,useEffect} from 'react'
-import { StyleSheet } from 'react-native'
-import { Button, TextInput } from 'react-native-paper'
+import { TextInput } from 'react-native-paper'
 import initfirebase from '../config/index';
-import { TouchableOpacity } from 'react-native';
 import * as ImagePicker from 'expo-image-picker';
 
 
@@ -93,7 +91,7 @@ const pickImage = async () => {
               nom: nom,
               prenom: prenom,
               pseudo: pseudo,
-              url:url,
+              url: url,
 
           }); 
       }
