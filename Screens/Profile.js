@@ -4,8 +4,6 @@ import {useState,useEffect} from 'react'
 import { TextInput } from 'react-native-paper'
 import initfirebase from '../config/index';
 import * as ImagePicker from 'expo-image-picker';
-
-
 export default function Profile() {
     const database = initfirebase.database();
     const [data,setdata]= useState([]);
@@ -55,7 +53,7 @@ const pickImage = async () => {
   console.log(result);
 
   if (!result.canceled) {
-      setImage(result.assets[0].uri);
+      setImage(result.uri);
   }
 };
 
@@ -63,6 +61,7 @@ const pickImage = async () => {
   return (
     <View style={styles.container}>
       <Text style={styles.titre}>Profil</Text>
+      <TouchableOpacity onPress={()=>{pickImage()}}>
       <Image source={ image === null ? require("../assets/profil.png") : {uri:image}}
       style={{
           width:130,
@@ -76,12 +75,13 @@ const pickImage = async () => {
           marginTop:20
           
       }}
-      onPress={() => {pickImage();}}></Image>
+     ></Image>
+      </TouchableOpacity>
       <TextInput placeholder="nom" style={styles.TextInput}></TextInput>
       <TextInput placeholder="prenom" style={styles.TextInput}></TextInput>
       <TextInput placeholder="pseudo" style={styles.TextInput}></TextInput>
       <TouchableOpacity style={styles.button}
-       onPress={async() => {
+       onPress={ async() => {
         if (image != null) {
           const url = await uploadImage(image)
 
