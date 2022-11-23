@@ -8,7 +8,7 @@ import { TabActions } from '@react-navigation/native';
 import { createMaterialBottomTabNavigator } from '@react-navigation/material-bottom-tabs';
 import List from './List';
 import Group from './Group';
-import Profil from './Profil';
+import Profile from './Profile';
 
 export default function Accueil() {
      
@@ -23,7 +23,7 @@ export default function Accueil() {
   <Tab.Navigator>
   <Tab.Screen  name="list" component={List} ></Tab.Screen>
   <Tab.Screen name="group" component={Group}></Tab.Screen>
-  <Tab.Screen name="profil" component={Profil}></Tab.Screen>
+  <Tab.Screen name="profile" component={Profile}></Tab.Screen>
   </Tab.Navigator>
 )
 }

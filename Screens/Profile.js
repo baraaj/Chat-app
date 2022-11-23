@@ -3,12 +3,12 @@ import React from 'react'
 import {useState,useEffect} from 'react'
 import { StyleSheet } from 'react-native'
 import { Button, TextInput } from 'react-native-paper'
-import initfirebase from './../config/index';
+import initfirebase from '../config/index';
 import { TouchableOpacity } from 'react-native';
 import * as ImagePicker from 'expo-image-picker';
 
 
-export default function Profil() {
+export default function Profile() {
     const database = initfirebase.database();
     const [data,setdata]= useState([]);
     const storage = initfirebase.storage();
@@ -34,32 +34,38 @@ export default function Profil() {
 }
 
 
-    const uploadImage=async(uri)=>{
-      //convert image to blob
-      const blob=await imageToBlob(uri);
-      //save blob to reference image
-      //get url
-    }
-    const pickImage = async () => {
-        // No permissions request is necessary for launching the image library
-        let result = await ImagePicker.launchImageLibraryAsync({
-          mediaTypes: ImagePicker.MediaTypeOptions.All,
-          allowsEditing: true,
-          aspect: [4, 3],
-          quality: 1,
-        });
-        console.log(result);
+const uploadImage = async(uri)=>{
+  //convert image to blob
+  const blob = await imageToBlob(uri);
+  //save blob to ref image
+  const ref_img = storage.ref().child("imageprofiles")
+      .child("image2.jpg");
+  await ref_img.put(blob)
+  //get url
+  const url = await ref_img.getDownloadURL();
+  return url;
+} ;
+const pickImage = async () => {
+  // No permissions request is necessary for launching the image library
+  let result = await ImagePicker.launchImageLibraryAsync({
+      mediaTypes: ImagePicker.MediaTypeOptions.All,
+      allowsEditing: true,
+      aspect: [4, 3],
+      quality: 1,
+  });
 
-        if (!result.canceled) {
-          setImage(result.assets[0].uri);
-        }
-      };
+  console.log(result);
+
+  if (!result.canceled) {
+      setImage(result.assets[0].uri);
+  }
+};
 
       
   return (
     <View style={styles.container}>
       <Text style={styles.titre}>Profil</Text>
-      <Image source={image===null?require("../assets/profil.png"):{uri:image}}
+      <Image source={ image === null ? require("../assets/profil.png") : {uri:image}}
       style={{
           width:130,
           height:130,
@@ -102,19 +108,7 @@ export default function Profil() {
         <Text style={{textAlign:"center",fontWeight:"bold",fontSize:18,color:'white'}}>Save</Text>
 
       </TouchableOpacity>
-      useEffect(() => {
-        ref_profils.on("value",(dataSnapshot)=>{
-          let d = [];
-          dataSnapshot.forEach((profile)=>{
-              d.push(profile.val());
-          });
-          setdata(d);
-      })
-        
-        return () => {
-          ref_profils.off();
-        };
-      }, []); 
+      
       {/* <Button style={styles.button}
       onPress={()=>{
           database.ref("profils").child("profil").set({

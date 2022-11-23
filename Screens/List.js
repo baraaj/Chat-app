@@ -1,15 +1,32 @@
 import { View, Text,StyleSheet ,FlatList,Image} from 'react-native'
 import React from 'react'
-
+import {useEffect,useState} from 'react'
+import initfirebase from './../config/index';
 export default function List(props) {
-  const data=[
+ /* const data=[
     {nom:"Baraa",
   prenom:"Jridi",
 pseudo:"bj"},
 {nom:"emilie",
 prenom:"Jean",
 pseudo:"ej"},
-  ]
+  ]*/
+  const database = initfirebase.database();
+  const ref_profils=database.ref("profils");
+  const [data,setdata]= useState([]);
+  useEffect(() => {
+    ref_profils.on("value",(dataSnapshot)=>{
+      let d = [];
+      dataSnapshot.forEach((profile)=>{
+          d.push(profile.val());
+      });
+      setdata(d);
+  })
+    
+    return () => {
+      ref_profils.off();
+    };
+  }, []); 
   return (
     <View style={styles.container}>
         <Text style={{
