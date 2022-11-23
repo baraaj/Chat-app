@@ -7,6 +7,9 @@ import { TouchableOpacity } from 'react-native';
 
 export default function Profil() {
     const database = initfirebase.database();
+    const [nom, setNom] = useState("");
+    const [prenom, setPrenom] = useState("");
+    const [pseudo, setPseudo] = useState("")
   return (
     <View style={styles.container}>
       <Text style={styles.titre}>Profil</Text>
@@ -27,11 +30,14 @@ export default function Profil() {
       <TextInput placeholder="prenom" style={styles.TextInput}></TextInput>
       <TextInput placeholder="pseudo" style={styles.TextInput}></TextInput>
       <TouchableOpacity style={styles.button}
-       onPress={()=>{
-        database.ref("profils").child("profil").set({
-            nom:"nom",
-            prenom:"ppp",
-            pseudo:"sss",
+       onPress={() => {
+        const ref_profils = database.ref('profils');
+        const key = ref_profils.push().key;
+
+        ref_profils.child('profil' + key).set({
+            nom: nom,
+            prenom: prenom,
+            pseudo: pseudo,
         });
     }}>
         
