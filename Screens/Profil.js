@@ -4,16 +4,58 @@ import { StyleSheet } from 'react-native'
 import { Button, TextInput } from 'react-native-paper'
 import initfirebase from './../config/index';
 import { TouchableOpacity } from 'react-native';
+import * as ImagePicker from 'expo-image-picker';
+
 
 export default function Profil() {
     const database = initfirebase.database();
+    const storage = initfirebase.storage();
     const [nom, setNom] = useState("");
     const [prenom, setPrenom] = useState("");
-    const [pseudo, setPseudo] = useState("")
+    const [image, setImage] = useState(null);
+    const [pseudo, setPseudo] = useState("");
+    const imageToBlob = async (uri) => {
+      const blob=await new Promise((resolve,reject)=>{
+        const xhr = await new XMLHttpRequest();
+        xhr.onload = function () {
+          resolve(xhr.response);
+        };
+        xhr.onerror = function (e) {
+          reject(new TypeError("Network request Failed"));
+        };
+        xhr.responseType = "blob"; //arraybuffer
+        xhr.open("GET", uri, true);
+        xhr.send(null);
+
+      });
+  return blob;
+}
+
+
+    const uploadImage=async(uri)=>{
+      //convert image to blob
+      const blob=await imageToBlob(uri);
+      //save blob to reference image
+      //get url
+    }
+    const pickImage = async () => {
+        // No permissions request is necessary for launching the image library
+        let result = await ImagePicker.launchImageLibraryAsync({
+          mediaTypes: ImagePicker.MediaTypeOptions.All,
+          allowsEditing: true,
+          aspect: [4, 3],
+          quality: 1,
+        });
+        console.log(result);
+
+        if (!result.canceled) {
+          setImage(result.assets[0].uri);
+        }
+      };
   return (
     <View style={styles.container}>
       <Text style={styles.titre}>Profil</Text>
-      <Image source={require("../assets/profil.png")}
+      <Image source={image===null?require("../assets/profil.png"):{uri:image}}
       style={{
           width:130,
           height:130,
@@ -25,20 +67,39 @@ export default function Profil() {
           
           marginTop:20
           
-      }}></Image>
+      }}
+      onPress={() => {pickImage();}}></Image>
       <TextInput placeholder="nom" style={styles.TextInput}></TextInput>
       <TextInput placeholder="prenom" style={styles.TextInput}></TextInput>
       <TextInput placeholder="pseudo" style={styles.TextInput}></TextInput>
       <TouchableOpacity style={styles.button}
        onPress={() => {
+        if(image!=null){
         const ref_profils = database.ref('profils');
         const key = ref_profils.push().key;
-
         ref_profils.child('profil' + key).set({
-            nom: nom,
-            prenom: prenom,
-            pseudo: pseudo,
-        });
+          nom: nom,
+          prenom: prenom,
+          pseudo: pseudo,
+      }); 
+      }
+        
+        const [data,setdata]= useState([]);
+        useEffect(() => {
+          ref_profils.on("value",(dataSnapshot)=>{
+            let d = [];
+            dataSnapshot.forEach((profile)=>{
+                d.push(profile.val());
+            });
+            setdata(d);
+        })
+          
+          return () => {
+            ref_profils.off();
+          };
+        }, []);
+
+       
     }}>
         
         <Text style={{textAlign:"center",fontWeight:"bold",fontSize:18,color:'white'}}>Save</Text>

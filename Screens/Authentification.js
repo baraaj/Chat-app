@@ -9,8 +9,8 @@ import Accueil from './Accueil';
 
 
 export default function Authentification(props) {
-    const[email,setEmail]=useState("");
-    const[password,setPassword]=useState("");
+    const[email,setEmail]=useState("jridibaraa@gmail.com");
+    const[password,setPassword]=useState("1234567");
     const auth = initfirebase.auth();
   return (
     <View style={styles.container}>

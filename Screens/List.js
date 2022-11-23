@@ -16,20 +16,22 @@ pseudo:"bj"}
         }}
         >Liste des profiles </Text>
         <FlatList data={data}
-                  renderItem={(item)=>{
-                      return <View style={styles.ViewItem}>
+                  renderItem={({item})=>{
+                      return (<View style={styles.ViewItem}>
                        
-                        <Image style={{height:60,width:60,resizeMode:"contain"}}source={require("../assets/profil.png")}></Image>
-                          <Text onPress={()=>{props.navigation.navigate("chat")}} style={{fontSize:22,fontWeight:"bold"}}>{item.pseudo}</Text>;
+                        <Image style={{height:60,width:60,resizeMode:"contain"}}
+                        source={require("../assets/profil.png")}></Image>
+                          <Text onPress={()=>{props.navigation.navigate("Chat")}} 
+                          style={{fontSize:22,fontWeight:"bold"}}>{item.pseudo}</Text>
                           <Text>{item.nom}</Text>;
                           <Text>{item.prenom}</Text>;
                            
-                            </View> 
+                            </View> );
                       
                       
-                  }}>
+                  }}
         style={{ width:"100%",height:"100%"}}
-
+>
         </FlatList>
     </View>
 )
