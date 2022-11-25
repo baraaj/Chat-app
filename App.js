@@ -13,7 +13,7 @@ export default function App() {
       <Stack.Screen name="auth" component={Authentification}></Stack.Screen>
       <Stack.Screen name="signup" component={SignUp}></Stack.Screen>
       <Stack.Screen name="Accueil" component={Accueil}></Stack.Screen>
-      <Stack.Screen name="Chat" component={Chat}></Stack.Screen>
+       
     </Stack.Navigator>
   </NavigationContainer>
 )};
