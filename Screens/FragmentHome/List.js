@@ -1,7 +1,7 @@
 import { View, Text,StyleSheet ,FlatList,Image} from 'react-native'
 import React from 'react'
 import {useEffect,useState} from 'react'
-import initfirebase from './../config/index';
+import initfirebase from '../../config/index';
 export default function List(props) {
  /* const data=[
     {nom:"Baraa",
@@ -40,7 +40,7 @@ pseudo:"ej"},
                       return ( 
                        <View style={styles.ViewItem}>
                         <Image style={{height:60,width:60,resizeMode:"contain"}}
-                        source={require("../assets/profil.png")}></Image>
+                        source={require("../../assets/profil.png")}></Image>
                           <Text onPress={()=>{props.navigation.navigate("Chat")}} 
                           style={{fontSize:22,fontWeight:"bold"}}>{item.pseudo}</Text>
                           <Text>{item.nom}</Text>

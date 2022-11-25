@@ -6,10 +6,10 @@ import { TouchableOpacity } from 'react-native';
 import { useState } from 'react';
 import { TabActions } from '@react-navigation/native';
 import { createMaterialBottomTabNavigator } from '@react-navigation/material-bottom-tabs';
-import List from './List';
-import Group from './Group';
-import Profile from './Profile';
-import Chat from './Chat';
+import List from './FragmentHome/List';
+import Group from './FragmentHome/Group';
+import Profile from './FragmentHome/Profile';
+import Chat from './FragmentHome/Chat';
 
 export default function Accueil() {
      

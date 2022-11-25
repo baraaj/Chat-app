@@ -3,7 +3,7 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import Authentification from './Screens/Authentification';
 import Accueil from './Screens/Accueil';
 import SignUp from './Screens/SignUp';
-import Chat from './Screens/Chat';
+import Chat from './Screens/FragmentHome/Chat';
 const Stack = createNativeStackNavigator();
 export default function App() {
 //alert(process.env.API_KEY)

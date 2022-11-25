@@ -2,7 +2,7 @@ import {View, Text, Button, TouchableOpacity, StyleSheet, Image} from "react-nat
 import React from 'react'
 import {useState,useEffect} from 'react'
 import { TextInput } from 'react-native-paper'
-import initfirebase from '../config/index';
+import initfirebase from '../../config/index';
 import * as ImagePicker from 'expo-image-picker';
 export default function Profile() {
     const database = initfirebase.database();
@@ -12,6 +12,7 @@ export default function Profile() {
     const [prenom, setPrenom] = useState("");
     const [image, setImage] = useState(null);
     const [pseudo, setPseudo] = useState("");
+    //const [{nom,prenom,pseudo},setData] = useState({nom:"",prenom:"",pseudo:""});
     const imageToBlob = async (uri) => {
       const blob=await new Promise((resolve,reject)=>{
         const xhr = new XMLHttpRequest();
@@ -62,7 +63,7 @@ const pickImage = async () => {
     <View style={styles.container}>
       <Text style={styles.titre}>Profil</Text>
       <TouchableOpacity onPress={()=>{pickImage()}}>
-      <Image source={ image === null ? require("../assets/profil.png") : {uri:image}}
+      <Image  source={ image === null ? require("../../assets/profil.png") : {uri:image}}
       style={{
           width:130,
           height:130,
@@ -77,13 +78,13 @@ const pickImage = async () => {
       }}
      ></Image>
       </TouchableOpacity>
-      <TextInput placeholder="nom" style={styles.TextInput}></TextInput>
-      <TextInput placeholder="prenom" style={styles.TextInput}></TextInput>
-      <TextInput placeholder="pseudo" style={styles.TextInput}></TextInput>
+      <TextInput placeholder="nom" onChangeText={e=>{setNom(e)}} style={styles.TextInput}></TextInput>
+      <TextInput placeholder="prenom" onChangeText={e=>{setPrenom(e)}} style={styles.TextInput}></TextInput>
+      <TextInput placeholder="pseudo" onChangeText={e=>{setPseudo(e)}} style={styles.TextInput}></TextInput>
       <TouchableOpacity style={styles.button}
        onPress={ async() => {
         if (image != null) {
-          const url = await uploadImage(image)
+          const url = await uploadImage(image);
 
           const ref_profils = database.ref('profils');
           const key = ref_profils.push().key;
