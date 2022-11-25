@@ -6,14 +6,16 @@ import SignUp from './Screens/SignUp';
 import Chat from './Screens/Chat';
 const Stack = createNativeStackNavigator();
 export default function App() {
-
+//alert(process.env.API_KEY)
+//console.log(process.env)
   return (
-    <NavigationContainer>
-    <Stack.Navigator>
-      <Stack.Screen name="auth" component={Authentification}></Stack.Screen>
-      <Stack.Screen name="signup" component={SignUp}></Stack.Screen>
-      <Stack.Screen name="Accueil" component={Accueil}></Stack.Screen>
+   <NavigationContainer>
+       <Stack.Navigator>
+          <Stack.Screen name="auth" component={Authentification}></Stack.Screen>
+          <Stack.Screen name="signup" component={SignUp}></Stack.Screen>
+          <Stack.Screen name="Accueil" component={Accueil}></Stack.Screen>
        
-    </Stack.Navigator>
-  </NavigationContainer>
+       </Stack.Navigator>
+    </NavigationContainer>
+ 
 )};

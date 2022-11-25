@@ -1,4 +1,5 @@
 config/
+.env
 node_modules/
 .expo/
 dist/
