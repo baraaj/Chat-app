@@ -1,4 +1,4 @@
-./config/index.js
+config/
 node_modules/
 .expo/
 dist/
