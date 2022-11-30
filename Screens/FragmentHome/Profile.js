@@ -4,7 +4,7 @@ import {useState,useEffect} from 'react'
 import { TextInput } from 'react-native-paper'
 import initfirebase from '../../config/index';
 import * as ImagePicker from 'expo-image-picker';
-export default function Profile() {
+export default function Profile({ navigation }) {
     const database = initfirebase.database();
     const [data,setdata]= useState([]);
     const storage = initfirebase.storage();
@@ -36,7 +36,7 @@ const uploadImage = async(uri)=>{
   const blob = await imageToBlob(uri);
   //save blob to ref image
   const ref_img = storage.ref().child("imageprofiles")
-      .child("image2.jpg");
+      .child("image"+Math.random()*10000+".jpg");
   await ref_img.put(blob)
   //get url
   const url = await ref_img.getDownloadURL();
@@ -63,8 +63,8 @@ const pickImage = async () => {
   return (
     <View style={styles.container}>
       <Text style={styles.titre}>Profil</Text>
-      <TouchableOpacity onPress={()=>{pickImage()}}>
-      <Image  source={ image===null? require("../../assets/profil.png") : {uri:image}}
+      <TouchableOpacity onPress={pickImage}>
+      <Image  source={ image === null ? require("../../assets/profil.png") : {uri:image}}
       style={{
           width:130,
           height:130,
@@ -82,28 +82,34 @@ const pickImage = async () => {
       <TextInput placeholder="nom" onChangeText={e=>{setNom(e)}} style={styles.TextInput}></TextInput>
       <TextInput placeholder="prenom" onChangeText={e=>{setPrenom(e)}} style={styles.TextInput}></TextInput>
       <TextInput placeholder="pseudo" onChangeText={e=>{setPseudo(e)}} style={styles.TextInput}></TextInput>
-      <TouchableOpacity style={styles.button}
-       onPress={ async() => {
-        if (image != null) {
-          const url = await uploadImage(image);
-
-          const ref_profils = database.ref('profils');
-          const key = ref_profils.push().key;
-          ref_profils.child("profil"+key).set({
+      <TouchableOpacity
+        style={styles.button}
+        onPress={async () => {
+          if (image != null) {
+            const url = await uploadImage(image);
+            const ref_profils = database.ref("profils");
+            const key = ref_profils.push().key;
+            ref_profils.child("profil" + key).set({
               nom: nom,
               prenom: prenom,
               pseudo: pseudo,
               url: url,
-
-          }); 
-      }
-   
-     
-   
-     
-      
-       
-    }}>
+            });
+            navigation.navigate("list");
+          } else {
+            const url = await uploadImage(image);
+            const ref_profils = database.ref("profils");
+            const key = ref_profils.push().key;
+            ref_profils.child("profil" + key).set({
+              nom: nom,
+              prenom: prenom,
+              pseudo: pseudo,
+              url: null,
+            });
+            navigation.navigate("list");
+          }
+        }}
+      >
         
         <Text style={{textAlign:"center",fontWeight:"bold",fontSize:18,color:'white'}}>Save</Text>
 

@@ -6,7 +6,7 @@ import { TouchableOpacity } from 'react-native';
 import initfirebase from './../config/index';
 import SignUp from './SignUp';
 import Accueil from './Accueil';
-
+import * as React from "react";
 
 export default function Authentification(props) {
     const[email,setEmail]=useState("jridibaraa@gmail.com");

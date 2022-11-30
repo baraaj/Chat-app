@@ -40,9 +40,9 @@ pseudo:"ej"},
                       return ( 
                        <View style={styles.ViewItem}>
                         <Image style={{height:60,width:60,resizeMode:"contain"}}
-                       source={ item.url===null? require("../../assets/profil.png") : {uri:item.url}}></Image>
-                          <Text onPress={()=>{props.navigation.navigate("Chat")}} 
-                          style={{fontSize:22,fontWeight:"bold"}}>{item.pseudo}</Text>
+                       source={ item.url === undefined ? require("../../assets/profil.png") : {uri:item.url}}></Image>
+                          <Text style={{fontSize:22,fontWeight:"bold"}}>{item.pseudo}</Text>
+    
                           <Text>{item.nom}</Text>
                           <Text>{item.prenom}</Text>
                            
