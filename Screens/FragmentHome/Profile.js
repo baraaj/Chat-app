@@ -54,6 +54,7 @@ const pickImage = async () => {
   console.log(result);
 
   if (!result.canceled) {
+       
       setImage(result.uri);
   }
 };
@@ -63,7 +64,7 @@ const pickImage = async () => {
     <View style={styles.container}>
       <Text style={styles.titre}>Profil</Text>
       <TouchableOpacity onPress={()=>{pickImage()}}>
-      <Image  source={ image === null ? require("../../assets/profil.png") : {uri:image}}
+      <Image  source={ image===null? require("../../assets/profil.png") : {uri:image}}
       style={{
           width:130,
           height:130,
